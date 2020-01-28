@@ -30,3 +30,5 @@ traceback()
 # So it seems we need to only use na_if on _character_ columns
 test %>%
   mutate_if(is.character, ~ na_if(.x, ""))
+
+devtools::session_info()
