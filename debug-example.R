@@ -6,20 +6,20 @@ library(dplyr)
 test <- tibble(a = lubridate::today() + runif(5) * 30, b = c(1:4, ""), c = c(runif(4), ""), d = c(sample(letters, 4, replace = TRUE), ""))
 test
 
-test %>% na_if("")
+# test %>% na_if("")  # we find an error here: "Error in charToDate(x) : character string is not in a standard unambiguous format"
 
 traceback()
 
 # The traceback is easier to understand without the pipe involved
-na_if(test, "")
+# na_if(test, "")
 
 # Also useful to look at the implementation of `na_if()`
 # We get the same error from
-test[test == ""] <- NA
-traceback()
+# test[test == ""] <- NA
+# traceback()
 
 # And also from
-as.Date("")
+# as.Date("")
 
 # So it seems we need to only use na_if on _character_ columns
 test %>%
